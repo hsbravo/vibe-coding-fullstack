@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${post.title} + ' | Vibe Coding'">Post Detail</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-[#f6f6f8] dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+    <div class="max-w-4xl mx-auto px-6 py-20">
+        <header class="mb-12">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                Post Detail
+            </div>
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4" th:text="${post.title}">게시글 제목</h1>
+            <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900 dark:text-slate-100">번호:</span>
+                    <span th:text="${post.no}">1</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900 dark:text-slate-100">생성일:</span>
+                    <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm:ss')}">2024-01-01</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900 dark:text-slate-100">수정일:</span>
+                    <span th:text="${#temporals.format(post.updatedAt, 'yyyy-MM-dd HH:mm:ss')}">2024-01-01</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="font-bold text-slate-900 dark:text-slate-100">조회수:</span>
+                    <span class="text-primary font-bold" th:text="${post.views}">0</span>
+                </div>
+            </div>
+        </header>
+
+        <article
+            class="bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 rounded-2xl shadow-2xl p-8 md:p-12 mb-12">
+            <div class="prose dark:prose-invert max-w-none text-lg leading-relaxed whitespace-pre-wrap"
+                th:text="${post.content}">
+                게시글 내용이 여기에 표시됩니다.
+            </div>
+        </article>
+
+        <div class="flex items-center justify-between border-t border-slate-200 dark:border-primary/10 pt-8">
+            <a href="/posts"
+                class="flex items-center gap-2 px-6 py-3 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                <svg xmlns="http://www.w3.org/2001/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                목록으로 돌아가기
+            </a>
+            <div class="flex gap-4">
+                <button class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
+                    수정하기
+                </button>
+                <button
+                    class="px-6 py-3 bg-red-500/10 text-red-500 font-bold rounded-lg hover:bg-red-500/20 transition-all">
+                    삭제하기
+                </button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

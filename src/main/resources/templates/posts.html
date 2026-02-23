@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Post List | Vibe Coding</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-[#f6f6f8] dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+        <header class="mb-12">
+            <h1 class="text-4xl font-extrabold tracking-tight mb-2">게시글 목록 <span
+                    class="text-primary italic">Posts</span></h1>
+            <p class="text-slate-500 dark:text-slate-400">VibeApp 메모리 기반 게시판 시스템</p>
+        </header>
+
+        <div
+            class="bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/10 rounded-xl shadow-xl overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-slate-50 dark:bg-primary/5">
+                    <tr>
+                        <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary">번호</th>
+                        <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary">제목</th>
+                        <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary">생성일</th>
+                        <th class="px-6 py-4 text-sm font-bold uppercase tracking-wider text-primary">조회수</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-primary/5">
+                    <tr th:each="post : ${posts}" class="hover:bg-slate-50 dark:hover:bg-primary/5 transition-colors">
+                        <td class="px-6 py-4 text-sm font-medium" th:text="${post.no}">1</td>
+                        <td class="px-6 py-4 text-sm font-bold">
+                            <a th:href="@{/posts/{no}(no=${post.no})}" class="hover:text-primary transition-colors"
+                                th:text="${post.title}">게시글 제목</a>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-slate-500"
+                            th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">2024-01-01</td>
+                        <td class="px-6 py-4 text-sm">
+                            <span class="px-2 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full"
+                                th:text="${post.views}">0</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="mt-8 flex justify-end">
+            <a href="/"
+                class="px-6 py-3 bg-slate-200 dark:bg-slate-800 text-sm font-bold rounded-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                메인으로 돌아가기
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
