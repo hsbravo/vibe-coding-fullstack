@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vibe Coding | Clean Code &amp; Creative Design</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Manrope', sans-serif;
+        }
+
+        .vibe-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(19, 19, 236, 0.08) 0%, transparent 50%);
+        }
+
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            background: rgba(16, 16, 34, 0.8);
+        }
+    </style>
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+    <!-- Floating Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-primary/10">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="p-2 bg-primary rounded-lg text-white">
+                    <span class="material-symbols-outlined text-2xl">terminal</span>
+                </div>
+                <span class="text-xl font-extrabold tracking-tight uppercase">Vibe Coding</span>
+            </div>
+            <div class="hidden md:flex items-center gap-10">
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Solutions</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Showcase</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Methodology</a>
+                <a class="text-sm font-medium hover:text-primary transition-colors" href="#">Our DNA</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <button
+                    class="hidden sm:flex items-center gap-2 px-5 py-2.5 bg-primary hover:bg-primary/90 text-white rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                    <span>Book Consultation</span>
+                    <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </button>
+                <button class="md:hidden text-slate-100">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+    <!-- Hero Section -->
+    <main class="relative pt-32 pb-20 overflow-hidden">
+        <div class="absolute inset-0 vibe-gradient -z-10"></div>
+        <!-- Subtle Animated Lines Background (Decorative) -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+                <path class="text-primary" d="M0 20 Q 25 25 50 20 T 100 20" fill="transparent" stroke="currentColor"
+                    stroke-width="0.1"></path>
+                <path class="text-primary" d="M0 50 Q 25 45 50 50 T 100 50" fill="transparent" stroke="currentColor"
+                    stroke-width="0.1"></path>
+                <path class="text-primary" d="M0 80 Q 25 85 50 80 T 100 80" fill="transparent" stroke="currentColor"
+                    stroke-width="0.1"></path>
+            </svg>
+        </div>
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-8">
+                <span class="relative flex h-2 w-2">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+                </span>
+                Now accepting Q4 projects
+            </div>
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-8 tracking-tight">
+                Code with <span class="text-primary">Vibe</span>.<br />
+                Deliver with Precision.
+            </h1>
+            <p
+                class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
+                We bridge the gap between creative imagination and technical excellence. Speed. Quality. Innovation.
+                Engineered for the modern web.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button
+                    class="w-full sm:w-auto px-8 py-4 bg-primary text-white rounded-lg font-bold text-lg hover:scale-[1.02] transition-transform shadow-xl shadow-primary/30">
+                    Get Started
+                </button>
+                <button
+                    class="w-full sm:w-auto px-8 py-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 rounded-lg font-bold text-lg hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    View Portfolio
+                </button>
+            </div>
+            <!-- Stats Bar -->
+            <div
+                class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-24 border-t border-slate-200 dark:border-primary/10 pt-12">
+                <div class="flex flex-col items-center">
+                    <span class="text-4xl font-black text-primary mb-1">100%</span>
+                    <span class="text-sm text-slate-500 uppercase tracking-widest font-semibold">Speed Index</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-4xl font-black text-primary mb-1">ELITE</span>
+                    <span class="text-sm text-slate-500 uppercase tracking-widest font-semibold">Quality Standard</span>
+                </div>
+                <div class="flex flex-col items-center">
+                    <span class="text-4xl font-black text-primary mb-1">2024</span>
+                    <span class="text-sm text-slate-500 uppercase tracking-widest font-semibold">Tech Stack</span>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Middle Section: Portfolio Grid -->
+    <section class="py-24 bg-slate-50 dark:bg-[#0c0c1a]">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+                <div class="max-w-xl">
+                    <p class="text-primary font-bold text-sm tracking-tighter uppercase mb-2">// Selected Work</p>
+                    <h2 class="text-4xl font-extrabold tracking-tight">Digital experiences that matter.</h2>
+                </div>
+                <a class="group flex items-center gap-2 text-primary font-bold" href="#">
+                    View all projects
+                    <span
+                        class="material-symbols-outlined group-hover:translate-x-1 transition-transform">trending_flat</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Portfolio Card 1 -->
+                <div
+                    class="group relative overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/5 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="aspect-video overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Screenshot of an elegant ecommerce dashboard with blue accents"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmTETVLFmsMD3JcvHqmnc8OxlAMFbfLNrUFZm-_TYh3veYiY_6jGapfSlkbBGBgRZyf13l789lXbyqk3E_Ds669ownORzaPig1SKMoghwSxETM5r6jTdEcl9cEOBrpWgKlM3HdOxCThw16zaim2o97MexnQJzHGU-39PgkGQMwf3zhKZPczoyKeOEdGhi4Z-GiegqjE_tnwmAcdf7h3eu9VP_0OdnLJ0N8FZRBcsz5t2sHjjqGpW7_Sa88KttGKFdEeD6JQhOuU-YX" />
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">E-commerce Redesign</h3>
+                                <p class="text-slate-500 text-sm">Direct-to-consumer platform</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary">arrow_outward</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">REACT</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">TAILWIND</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">SHOPIFY</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Card 2 -->
+                <div
+                    class="group relative overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/5 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="aspect-video overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Modern fintech analytics interface with neon blue graphs"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCStw5B7MCBj6IQLdSusB5nv970YXBqPRtXCw95x8NcAV60oKzJ2IUx6U5ATyg9zGKoH0L8BYxDgE1WVeXq2cVJvO_EFFOMDTPGbGe0h9Z4xtMrmj8da3JaofS1mA6fHxui6zoTiF9acSXN5XqmKs7SiuhQigxIdRCyoMWhB2_W8v39Im3fVDNAnXNffeiCbuK2SmemwQ_phYoGZX8vcn8hLoieRPYgwTOvgEJLMPUIqFT1LjyGi4I30-fa-JwKba1tTuZOaoCEGI4P" />
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">Fintech Dashboard</h3>
+                                <p class="text-slate-500 text-sm">Real-time data visualization</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary">arrow_outward</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">NEXT.JS</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">D3.JS</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">TYPESCRIPT</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Card 3 -->
+                <div
+                    class="group relative overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/5 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="aspect-video overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="Minimalist creative portfolio for an architect"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_x-cebUHgBAuE22RoxG8JIbFbHL_DQ-6gkXITiI5__7paJzW4R1SOS-UdYOXZYLIt-ZPRM1lhy0pGBNaPiS45PAPiHWt4NRe0_U8p61-Miw7XBXnJzL-lUHKW2R7UtzKV1ZvnNbawGxZkOKz4HggtlUdy95WAD920orAYVK72t96V20jfB2swVnXznQmMUPTR8aj5DM-xy7N8pqoRch-9-U8ai-cVic-Xr41UbwP16wCWpyS_ejVcbw3nOUV_KrhY8SULJ0j61F7n" />
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">Creative Portfolio</h3>
+                                <p class="text-slate-500 text-sm">Interactive gallery for artists</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary">arrow_outward</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">GSAP</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">THREE.JS</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Card 4 -->
+                <div
+                    class="group relative overflow-hidden rounded-xl bg-white dark:bg-background-dark border border-slate-200 dark:border-primary/5 shadow-sm hover:shadow-2xl transition-all">
+                    <div class="aspect-video overflow-hidden">
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            data-alt="SaaS administration platform with clean layout"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbVgGEe2Ftcf99SVyUO0I1l_Tm7tov7V027BdRzIXB4lLltqSZXZdwFuYvLaoBhJ8l3qSjxBt5FhS3DH7lje3DpAkIoz9Wsd0cLbUBATM6F3sjK20GK18pQtnSpLFGqmR9ynz0ojgbWjUDGl0gCWHzQ_U0xSE6n6aD8Vm2diDiSpXY3Pe8boY2Mbede4xKUoySiOhai4CVeS8kD3Zd1LjUZ88U1vlNOviRsK9adLRQbZmi2qwdDoQsZIZTHGw2fTGzU323NUswienu" />
+                    </div>
+                    <div class="p-8">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-2xl font-bold mb-1">SaaS Platform</h3>
+                                <p class="text-slate-500 text-sm">Enterprise resource management</p>
+                            </div>
+                            <span class="material-symbols-outlined text-primary">arrow_outward</span>
+                        </div>
+                        <div class="flex gap-2">
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">NODE.JS</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">POSTGRES</span>
+                            <span
+                                class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded">DOCKER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer Section -->
+    <footer
+        class="bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-primary/10 pt-20 pb-10">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Ready to ship something <span
+                            class="text-primary italic">extraordinary?</span></h2>
+                    <p class="text-slate-500 dark:text-slate-400 mb-8 max-w-md">
+                        Join our monthly tech digest to stay updated with the latest in creative coding and performance
+                        optimization.
+                    </p>
+                    <form class="flex max-w-sm gap-2">
+                        <input
+                            class="flex-1 bg-white dark:bg-slate-900 border border-slate-300 dark:border-primary/20 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-primary focus:border-transparent outline-none"
+                            placeholder="email@example.com" type="email" />
+                        <button
+                            class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-colors">
+                            Join
+                        </button>
+                    </form>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-8">
+                    <div>
+                        <p class="font-bold mb-4 text-sm uppercase tracking-widest text-primary">Platform</p>
+                        <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                            <li><a class="hover:text-primary transition-colors" href="#">Services</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Case Studies</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Process</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold mb-4 text-sm uppercase tracking-widest text-primary">Company</p>
+                        <ul class="space-y-3 text-sm text-slate-500 dark:text-slate-400">
+                            <li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+                            <li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <p class="font-bold mb-4 text-sm uppercase tracking-widest text-primary">Follow</p>
+                        <div class="flex gap-4">
+                            <a class="text-slate-500 hover:text-primary" href="#">
+                                <span class="material-symbols-outlined">data_object</span>
+                            </a>
+                            <a class="text-slate-500 hover:text-primary" href="#">
+                                <span class="material-symbols-outlined">share</span>
+                            </a>
+                            <a class="text-slate-500 hover:text-primary" href="#">
+                                <span class="material-symbols-outlined">alternate_email</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div
+                class="flex flex-col md:flex-row justify-between items-center pt-10 border-t border-slate-200 dark:border-primary/5 text-xs text-slate-400">
+                <p>© 2024 Vibe Coding. All rights reserved.</p>
+                <div class="flex gap-6 mt-4 md:mt-0">
+                    <a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+                    <a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
