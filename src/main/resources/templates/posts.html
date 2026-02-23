@@ -27,10 +27,21 @@
 <body
     class="bg-[#f6f6f8] dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
     <div class="max-w-7xl mx-auto px-6 py-20">
-        <header class="mb-12">
-            <h1 class="text-4xl font-extrabold tracking-tight mb-2">게시글 목록 <span
-                    class="text-primary italic">Posts</span></h1>
-            <p class="text-slate-500 dark:text-slate-400">VibeApp 메모리 기반 게시판 시스템</p>
+        <header class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+                <h1 class="text-4xl font-extrabold tracking-tight mb-2">게시글 목록 <span
+                        class="text-primary italic">Posts</span></h1>
+                <p class="text-slate-500 dark:text-slate-400">VibeApp 메모리 기반 게시판 시스템</p>
+            </div>
+            <a href="/posts/new"
+                class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-bold rounded-lg hover:scale-[1.02] transition-transform shadow-lg shadow-primary/20">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd"
+                        d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                        clip-rule="evenodd" />
+                </svg>
+                새 글 작성
+            </a>
         </header>
 
         <div

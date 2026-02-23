@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <title>New Post | Vibe Coding</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1313ec",
+                        "background-dark": "#101022",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body
+    class="bg-[#f6f6f8] dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display transition-colors duration-300">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+        <header class="mb-12">
+            <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold uppercase tracking-widest mb-6">
+                Create Content
+            </div>
+            <h1 class="text-4xl font-extrabold tracking-tight mb-2">새 게시글 작성 <span class="text-primary italic">New
+                    Post</span></h1>
+            <p class="text-slate-500 dark:text-slate-400">새로운 아이디어를 공유해 주세요.</p>
+        </header>
+
+        <form id="postForm" action="/posts/add" method="post" class="space-y-8">
+            <div class="space-y-2">
+                <label for="title"
+                    class="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">제목</label>
+                <input type="text" id="title" name="title" required
+                    class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-primary/10 rounded-xl px-6 py-4 text-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400"
+                    placeholder="매력적인 제목을 입력하세요">
+            </div>
+
+            <div class="space-y-2">
+                <label for="content"
+                    class="text-sm font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider">내용</label>
+                <textarea id="content" name="content" required rows="10"
+                    class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-primary/10 rounded-xl px-6 py-4 text-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all placeholder:text-slate-400 resize-none"
+                    placeholder="전하고 싶은 내용을 상세히 적어주세요"></textarea>
+            </div>
+
+            <div class="flex items-center justify-end gap-4 pt-4 border-t border-slate-200 dark:border-primary/10">
+                <a href="/posts"
+                    class="px-8 py-4 bg-slate-200 dark:bg-slate-800 text-slate-900 dark:text-slate-100 font-bold rounded-xl hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors">
+                    취소
+                </a>
+                <button type="submit"
+                    class="px-10 py-4 bg-primary text-white font-bold rounded-xl hover:scale-[1.02] transition-transform shadow-xl shadow-primary/30">
+                    등록하기
+                </button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
