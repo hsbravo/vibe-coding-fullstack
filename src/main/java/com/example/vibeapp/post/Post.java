@@ -3,16 +3,16 @@ package com.example.vibeapp.post;
 import java.time.LocalDateTime;
 
 public class Post {
-    private Long no;
+    private Long id;
     private String title;
     private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
     private Integer views;
 
-    public Post(Long no, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
+    public Post(Long id, String title, String content, LocalDateTime createdAt, LocalDateTime updatedAt,
             Integer views) {
-        this.no = no;
+        this.id = id;
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
@@ -21,12 +21,12 @@ public class Post {
     }
 
     // Getters and Setters
-    public Long getNo() {
-        return no;
+    public Long getId() {
+        return id;
     }
 
-    public void setNo(Long no) {
-        this.no = no;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitle() {

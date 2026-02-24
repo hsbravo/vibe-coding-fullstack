@@ -9,14 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @GetMapping("/")
-    public String index(Model model) {
+    public String home(Model model) {
         model.addAttribute("message", "Thymeleaf is working perfectly in VibeApp! ✨");
         return "home/home";
-    }
-
-    @GetMapping("/api/hello")
-    @ResponseBody
-    public String hello() {
-        return "Hello, Vibe!";
     }
 }

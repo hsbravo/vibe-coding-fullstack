@@ -13,15 +13,15 @@ public class PostRepository {
         return new ArrayList<>(posts);
     }
 
-    public Post findByNo(Long no) {
+    public Post findById(Long id) {
         return posts.stream()
-                .filter(post -> post.getNo().equals(no))
+                .filter(post -> post.getId().equals(id))
                 .findFirst()
                 .orElse(null);
     }
 
     public void save(Post post) {
-        Post existing = findByNo(post.getNo());
+        Post existing = findById(post.getId());
         if (existing != null) {
             int index = posts.indexOf(existing);
             posts.set(index, post);
@@ -30,7 +30,7 @@ public class PostRepository {
         }
     }
 
-    public void deleteByNo(Long no) {
-        posts.removeIf(post -> post.getNo().equals(no));
+    public void deleteById(Long id) {
+        posts.removeIf(post -> post.getId().equals(id));
     }
 }

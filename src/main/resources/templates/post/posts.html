@@ -58,9 +58,9 @@
                 <tbody class="divide-y divide-slate-100 dark:divide-primary/5">
                     <tr th:each="post : ${page.items}"
                         class="hover:bg-slate-50 dark:hover:bg-primary/5 transition-colors">
-                        <td class="px-6 py-4 text-sm font-medium" th:text="${post.no}">1</td>
+                        <td class="px-6 py-4 text-sm font-medium" th:text="${post.id}">1</td>
                         <td class="px-6 py-4 text-sm font-bold">
-                            <a th:href="@{/posts/{no}(no=${post.no})}" class="hover:text-primary transition-colors"
+                            <a th:href="@{/posts/{id}(id=${post.id})}" class="hover:text-primary transition-colors"
                                 th:text="${post.title}">게시글 제목</a>
                         </td>
                         <td class="px-6 py-4 text-sm text-slate-500"

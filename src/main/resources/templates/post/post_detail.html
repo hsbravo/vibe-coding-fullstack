@@ -36,7 +36,7 @@
             <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                 <div class="flex items-center gap-2">
                     <span class="font-bold text-slate-900 dark:text-slate-100">번호:</span>
-                    <span th:text="${post.no}">1</span>
+                    <span th:text="${post.id}">1</span>
                 </div>
                 <div class="flex items-center gap-2">
                     <span class="font-bold text-slate-900 dark:text-slate-100">생성일:</span>
@@ -72,11 +72,11 @@
                 목록으로 돌아가기
             </a>
             <div class="flex gap-4">
-                <a th:href="@{/posts/{no}/edit(no=${post.no})}"
+                <a th:href="@{/posts/{id}/edit(id=${post.id})}"
                     class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
                     수정하기
                 </a>
-                <a th:href="@{/posts/{no}/delete(no=${post.no})}"
+                <a th:href="@{/posts/{id}/delete(id=${post.id})}"
                     class="px-6 py-3 bg-red-500/10 text-red-500 font-bold rounded-lg hover:bg-red-500/20 transition-all">
                     삭제하기
                 </a>

@@ -14,14 +14,14 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> getAllPosts() {
+    public List<Post> findAll() {
         return postRepository.findAll().stream()
-                .sorted((p1, p2) -> p2.getNo().compareTo(p1.getNo()))
+                .sorted((p1, p2) -> p2.getId().compareTo(p1.getId()))
                 .toList();
     }
 
-    public Page<Post> getPagedPosts(int page, int size) {
-        List<Post> allPosts = getAllPosts();
+    public Page<Post> findAllPaged(int page, int size) {
+        List<Post> allPosts = findAll();
         int totalItems = allPosts.size();
         int totalPages = (int) Math.ceil((double) totalItems / size);
 
@@ -33,22 +33,22 @@ public class PostService {
         return new Page<>(pagedItems, page, totalPages, size, totalItems);
     }
 
-    public Post getPost(Long no) {
-        Post post = postRepository.findByNo(no);
+    public Post findById(Long id) {
+        Post post = postRepository.findById(id);
         if (post != null) {
             post.setViews(post.getViews() + 1);
         }
         return post;
     }
 
-    public void addPost(String title, String content) {
-        Long nextNo = postRepository.findAll().stream()
-                .mapToLong(Post::getNo)
+    public void create(String title, String content) {
+        Long nextId = postRepository.findAll().stream()
+                .mapToLong(Post::getId)
                 .max()
                 .orElse(0L) + 1;
 
         Post newPost = new Post(
-                nextNo,
+                nextId,
                 title,
                 content,
                 LocalDateTime.now(),
@@ -57,8 +57,8 @@ public class PostService {
         postRepository.save(newPost);
     }
 
-    public void updatePost(Long no, String title, String content) {
-        Post post = postRepository.findByNo(no);
+    public void update(Long id, String title, String content) {
+        Post post = postRepository.findById(id);
         if (post != null) {
             post.setTitle(title);
             post.setContent(content);
@@ -67,8 +67,8 @@ public class PostService {
         }
     }
 
-    public void deletePost(Long no) {
-        postRepository.deleteByNo(no);
+    public void delete(Long id) {
+        postRepository.deleteById(id);
     }
 
     @PostConstruct
