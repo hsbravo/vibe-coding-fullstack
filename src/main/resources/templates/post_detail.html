@@ -76,10 +76,10 @@
                     class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
                     수정하기
                 </a>
-                <button
+                <a th:href="@{/posts/{no}/delete(no=${post.no})}"
                     class="px-6 py-3 bg-red-500/10 text-red-500 font-bold rounded-lg hover:bg-red-500/20 transition-all">
                     삭제하기
-                </button>
+                </a>
             </div>
         </div>
     </div>

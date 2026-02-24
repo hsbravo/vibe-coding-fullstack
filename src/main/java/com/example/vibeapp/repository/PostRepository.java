@@ -24,4 +24,8 @@ public class PostRepository {
     public void save(Post post) {
         posts.add(post);
     }
+
+    public void deleteByNo(Long no) {
+        posts.removeIf(post -> post.getNo().equals(no));
+    }
 }

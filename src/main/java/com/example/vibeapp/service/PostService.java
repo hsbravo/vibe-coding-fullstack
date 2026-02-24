@@ -56,6 +56,10 @@ public class PostService {
         }
     }
 
+    public void deletePost(Long no) {
+        postRepository.deleteByNo(no);
+    }
+
     @PostConstruct
     public void init() {
         for (int i = 1; i <= 10; i++) {
