@@ -17,8 +17,8 @@ public class PostController {
     }
 
     @GetMapping("/posts")
-    public String list(Model model) {
-        model.addAttribute("posts", postService.getAllPosts());
+    public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
+        model.addAttribute("page", postService.getPagedPosts(page, 5));
         return "posts";
     }
 

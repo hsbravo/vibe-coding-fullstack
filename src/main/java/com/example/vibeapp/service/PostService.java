@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import com.example.vibeapp.model.Page;
 
 @Service
 public class PostService {
@@ -20,6 +21,19 @@ public class PostService {
         return postRepository.findAll().stream()
                 .sorted((p1, p2) -> p2.getNo().compareTo(p1.getNo()))
                 .toList();
+    }
+
+    public Page<Post> getPagedPosts(int page, int size) {
+        List<Post> allPosts = getAllPosts();
+        int totalItems = allPosts.size();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+
+        int start = (page - 1) * size;
+        int end = Math.min(start + size, totalItems);
+
+        List<Post> pagedItems = (start < totalItems) ? allPosts.subList(start, end) : List.of();
+
+        return new Page<>(pagedItems, page, totalPages, size, totalItems);
     }
 
     public Post getPost(Long no) {
