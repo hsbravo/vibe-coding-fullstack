@@ -1,6 +1,5 @@
-package com.example.vibeapp.controller;
+package com.example.vibeapp.post;
 
-import com.example.vibeapp.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,18 +18,18 @@ public class PostController {
     @GetMapping("/posts")
     public String list(@RequestParam(value = "page", defaultValue = "1") int page, Model model) {
         model.addAttribute("page", postService.getPagedPosts(page, 5));
-        return "posts";
+        return "post/posts";
     }
 
     @GetMapping("/posts/{no}")
     public String detail(@PathVariable("no") Long no, Model model) {
         model.addAttribute("post", postService.getPost(no));
-        return "post_detail";
+        return "post/post_detail";
     }
 
     @GetMapping("/posts/new")
     public String newPostForm() {
-        return "post_new_form";
+        return "post/post_new_form";
     }
 
     @PostMapping("/posts/add")
@@ -42,7 +41,7 @@ public class PostController {
     @GetMapping("/posts/{no}/edit")
     public String editForm(@PathVariable("no") Long no, Model model) {
         model.addAttribute("post", postService.getPost(no));
-        return "post_edit_form";
+        return "post/post_edit_form";
     }
 
     @PostMapping("/posts/{no}/save")
