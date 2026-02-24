@@ -72,9 +72,10 @@
                 목록으로 돌아가기
             </a>
             <div class="flex gap-4">
-                <button class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
+                <a th:href="@{/posts/{no}/edit(no=${post.no})}"
+                    class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-primary/90 transition-all">
                     수정하기
-                </button>
+                </a>
                 <button
                     class="px-6 py-3 bg-red-500/10 text-red-500 font-bold rounded-lg hover:bg-red-500/20 transition-all">
                     삭제하기

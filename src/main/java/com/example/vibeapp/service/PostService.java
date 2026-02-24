@@ -42,9 +42,18 @@ public class PostService {
                 content,
                 LocalDateTime.now(),
                 null,
-                0
-        );
+                0);
         postRepository.save(newPost);
+    }
+
+    public void updatePost(Long no, String title, String content) {
+        Post post = postRepository.findByNo(no);
+        if (post != null) {
+            post.setTitle(title);
+            post.setContent(content);
+            post.setUpdatedAt(LocalDateTime.now());
+            postRepository.save(post);
+        }
     }
 
     @PostConstruct
@@ -56,8 +65,7 @@ public class PostService {
                     "테스트 게시글 내용입니다. " + i,
                     LocalDateTime.now().minusDays(10 - i),
                     LocalDateTime.now(),
-                    i * 10
-            ));
+                    i * 10));
         }
     }
 }
