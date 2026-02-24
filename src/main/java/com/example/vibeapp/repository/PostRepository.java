@@ -22,7 +22,13 @@ public class PostRepository {
     }
 
     public void save(Post post) {
-        posts.add(post);
+        Post existing = findByNo(post.getNo());
+        if (existing != null) {
+            int index = posts.indexOf(existing);
+            posts.set(index, post);
+        } else {
+            posts.add(post);
+        }
     }
 
     public void deleteByNo(Long no) {
