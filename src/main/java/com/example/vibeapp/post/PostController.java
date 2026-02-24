@@ -1,8 +1,13 @@
 package com.example.vibeapp.post;
 
+import com.example.vibeapp.post.dto.PostCreateDto;
+import com.example.vibeapp.post.dto.PostUpdateDto;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,13 +33,17 @@ public class PostController {
     }
 
     @GetMapping("/posts/new")
-    public String createPostForm() {
+    public String createPostForm(Model model) {
+        model.addAttribute("post", new PostCreateDto("", ""));
         return "post/post_new_form";
     }
 
     @PostMapping("/posts/add")
-    public String createPost(@RequestParam("title") String title, @RequestParam("content") String content) {
-        postService.create(title, content);
+    public String createPost(@Valid @ModelAttribute("post") PostCreateDto postCreateDto, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "post/post_new_form";
+        }
+        postService.create(postCreateDto);
         return "redirect:/posts";
     }
 
@@ -45,9 +54,12 @@ public class PostController {
     }
 
     @PostMapping("/posts/{id}/save")
-    public String updatePost(@PathVariable("id") Long id, @RequestParam("title") String title,
-            @RequestParam("content") String content) {
-        postService.update(id, title, content);
+    public String updatePost(@PathVariable("id") Long id, @Valid @ModelAttribute("post") PostUpdateDto postUpdateDto,
+            BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "post/post_edit_form";
+        }
+        postService.update(postUpdateDto);
         return "redirect:/posts/" + id;
     }
 

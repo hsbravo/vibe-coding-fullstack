@@ -1,5 +1,9 @@
 package com.example.vibeapp.post;
 
+import com.example.vibeapp.post.dto.PostCreateDto;
+import com.example.vibeapp.post.dto.PostListDto;
+import com.example.vibeapp.post.dto.PostResponseDto;
+import com.example.vibeapp.post.dto.PostUpdateDto;
 import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 
@@ -14,54 +18,49 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
-    public List<Post> findAll() {
+    public List<PostListDto> findAll() {
         return postRepository.findAll().stream()
                 .sorted((p1, p2) -> p2.getId().compareTo(p1.getId()))
+                .map(PostListDto::from)
                 .toList();
     }
 
-    public Page<Post> findAllPaged(int page, int size) {
-        List<Post> allPosts = findAll();
+    public Page<PostListDto> findAllPaged(int page, int size) {
+        List<PostListDto> allPosts = findAll();
         int totalItems = allPosts.size();
         int totalPages = (int) Math.ceil((double) totalItems / size);
 
         int start = (page - 1) * size;
         int end = Math.min(start + size, totalItems);
 
-        List<Post> pagedItems = (start < totalItems) ? allPosts.subList(start, end) : List.of();
+        List<PostListDto> pagedItems = (start < totalItems) ? allPosts.subList(start, end) : List.of();
 
         return new Page<>(pagedItems, page, totalPages, size, totalItems);
     }
 
-    public Post findById(Long id) {
+    public PostResponseDto findById(Long id) {
         Post post = postRepository.findById(id);
         if (post != null) {
             post.setViews(post.getViews() + 1);
         }
-        return post;
+        return PostResponseDto.from(post);
     }
 
-    public void create(String title, String content) {
+    public void create(PostCreateDto createDto) {
         Long nextId = postRepository.findAll().stream()
                 .mapToLong(Post::getId)
                 .max()
                 .orElse(0L) + 1;
 
-        Post newPost = new Post(
-                nextId,
-                title,
-                content,
-                LocalDateTime.now(),
-                null,
-                0);
+        Post newPost = createDto.toEntity(nextId);
         postRepository.save(newPost);
     }
 
-    public void update(Long id, String title, String content) {
-        Post post = postRepository.findById(id);
+    public void update(PostUpdateDto updateDto) {
+        Post post = postRepository.findById(updateDto.id());
         if (post != null) {
-            post.setTitle(title);
-            post.setContent(content);
+            post.setTitle(updateDto.title());
+            post.setContent(updateDto.content());
             post.setUpdatedAt(LocalDateTime.now());
             postRepository.save(post);
         }

@@ -2,3 +2,43 @@
 spring:
   application:
     name: vibeapp
+
+  # H2 Database Configuration (File Mode)
+  datasource:
+    url: jdbc:h2:file:./data/testdb;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  # H2 Console Configuration
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: false
+
+  # SQL Initialization
+  sql:
+    init:
+      mode: always
+
+# MyBatis Configuration
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
+  type-aliases-package: com.example.vibeapp.post
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.example.vibeapp: DEBUG
+    org.springframework.boot.autoconfigure: DEBUG
+  file:
+    name: ./logs/app.log
+
+# Debug Mode
+debug: false

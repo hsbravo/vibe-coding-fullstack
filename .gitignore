@@ -33,3 +33,11 @@ nbdist/
 ### Temp ###
 structure.txt
 *.log
+
+### H2 Database ###
+/data/
+*.mv.db
+*.trace.db
+
+### Logs ###
+/logs/
