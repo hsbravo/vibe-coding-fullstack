@@ -33,6 +33,12 @@
                 Post Detail
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4" th:text="${post.title}">게시글 제목</h1>
+            <div th:if="${post.tags != null and !post.tags.isEmpty()}" class="flex flex-wrap gap-2 mb-4">
+                <span th:each="t : ${post.tags}"
+                      class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-sm font-medium text-slate-700 dark:text-slate-300">
+                    <span th:text="${t}">태그</span>
+                </span>
+            </div>
             <div class="flex flex-wrap items-center gap-6 text-sm text-slate-500 dark:text-slate-400">
                 <div class="flex items-center gap-2">
                     <span class="font-bold text-slate-900 dark:text-slate-100">번호:</span>

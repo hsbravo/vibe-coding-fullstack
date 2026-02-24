@@ -34,7 +34,7 @@ public class PostController {
 
     @GetMapping("/posts/new")
     public String createPostForm(Model model) {
-        model.addAttribute("post", new PostCreateDto("", ""));
+        model.addAttribute("post", new PostCreateDto("", "", ""));
         return "post/post_new_form";
     }
 
@@ -49,7 +49,7 @@ public class PostController {
 
     @GetMapping("/posts/{id}/edit")
     public String updatePostForm(@PathVariable("id") Long id, Model model) {
-        model.addAttribute("post", postService.findById(id));
+        model.addAttribute("post", postService.getEditDto(id));
         return "post/post_edit_form";
     }
 
