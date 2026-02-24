@@ -22,12 +22,20 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
-    runtimeOnly 'com.h2database:h2'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:4.0.1'
+    implementation 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+// JavaExec task to run a small DB cleanup main
+task runDbCleanup(type: JavaExec) {
+    group = 'utility'
+    description = 'Run DB cleanup to drop legacy POSTS table'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass.set('com.example.vibeapp.util.DbCleanup')
 }

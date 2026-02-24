@@ -5,7 +5,7 @@ spring:
 
   # H2 Database Configuration (File Mode)
   datasource:
-    url: jdbc:h2:file:./data/testdb;AUTO_SERVER=TRUE
+    url: jdbc:h2:file:./data/testdb
     driver-class-name: org.h2.Driver
     username: sa
     password:
@@ -37,6 +37,10 @@ logging:
     root: INFO
     com.example.vibeapp: DEBUG
     org.springframework.boot.autoconfigure: DEBUG
+    org.apache.ibatis: DEBUG
+    org.mybatis: DEBUG
+    org.mybatis.spring: DEBUG
+    org.springframework.jdbc.core: DEBUG
   file:
     name: ./logs/app.log
 

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.vibeapp.post.PostRepository">
+
+    <!-- 게시글 전체 조회 -->
+    <select id="findAll" resultType="com.example.vibeapp.post.Post">
+        SELECT * FROM POSTS ORDER BY ID DESC
+    </select>
+
+    <!-- 게시글 단건 조회 -->
+    <select id="findById" parameterType="long" resultType="com.example.vibeapp.post.Post">
+        SELECT * FROM POSTS WHERE ID = #{id}
+    </select>
+
+    <!-- 게시글 저장 (insert) -->
+    <insert id="save" parameterType="com.example.vibeapp.post.Post">
+        INSERT INTO POSTS (ID, TITLE, CONTENT, CREATED_AT, UPDATED_AT, VIEWS)
+        VALUES (#{id}, #{title}, #{content}, #{createdAt}, #{updatedAt}, #{views})
+    </insert>
+
+    <!-- 게시글 수정 (update) -->
+    <update id="update" parameterType="com.example.vibeapp.post.Post">
+        UPDATE POSTS
+        SET TITLE = #{title}, CONTENT = #{content}, UPDATED_AT = #{updatedAt}, VIEWS = #{views}
+        WHERE ID = #{id}
+    </update>
+
+    <!-- 조회수 1 증가 -->
+    <update id="incrementViews" parameterType="long">
+        UPDATE POSTS SET VIEWS = VIEWS + 1 WHERE ID = #{id}
+    </update>
+
+    <!-- 게시글 삭제 -->
+    <delete id="deleteById" parameterType="long">
+        DELETE FROM POSTS WHERE ID = #{id}
+    </delete>
+
+    <!-- 페이징 처리: limit, offset 사용 예시 -->
+    <select id="findPage" resultType="com.example.vibeapp.post.Post">
+        SELECT * FROM POSTS ORDER BY ID DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 전체 게시글 수 조회 -->
+    <select id="count" resultType="int">
+        SELECT COUNT(*) FROM POSTS
+    </select>
+
+</mapper>

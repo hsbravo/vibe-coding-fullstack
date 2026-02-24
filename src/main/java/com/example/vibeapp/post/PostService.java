@@ -5,6 +5,7 @@ import com.example.vibeapp.post.dto.PostListDto;
 import com.example.vibeapp.post.dto.PostResponseDto;
 import com.example.vibeapp.post.dto.PostUpdateDto;
 import jakarta.annotation.PostConstruct;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,9 +14,11 @@ import java.util.List;
 @Service
 public class PostService {
     private final PostRepository postRepository;
+    private final JdbcTemplate jdbcTemplate;
 
-    public PostService(PostRepository postRepository) {
+    public PostService(PostRepository postRepository, JdbcTemplate jdbcTemplate) {
         this.postRepository = postRepository;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     public List<PostListDto> findAll() {
@@ -40,10 +43,14 @@ public class PostService {
 
     public PostResponseDto findById(Long id) {
         Post post = postRepository.findById(id);
-        if (post != null) {
-            post.setViews(post.getViews() + 1);
+        if (post == null) {
+            return PostResponseDto.from(null);
         }
-        return PostResponseDto.from(post);
+
+        // increment views atomically in DB and return updated entity
+        postRepository.incrementViews(id);
+        Post updated = postRepository.findById(id);
+        return PostResponseDto.from(updated);
     }
 
     public void create(PostCreateDto createDto) {
@@ -72,14 +79,23 @@ public class PostService {
 
     @PostConstruct
     public void init() {
-        for (int i = 1; i <= 10; i++) {
-            postRepository.save(new Post(
-                    (long) i,
-                    "테스트 게시글 제목 " + i,
-                    "테스트 게시글 내용입니다. " + i,
-                    LocalDateTime.now().minusDays(10 - i),
-                    LocalDateTime.now(),
-                    i * 10));
+        // Only seed test data when POSTS table is empty
+        Integer count = 0;
+        try {
+            count = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM POSTS", Integer.class);
+        } catch (Exception ignored) {
+        }
+
+        if (count == null || count == 0) {
+            for (int i = 1; i <= 10; i++) {
+                postRepository.save(new Post(
+                        (long) i,
+                        "테스트 게시글 제목 " + i,
+                        "테스트 게시글 내용입니다. " + i,
+                        LocalDateTime.now().minusDays(10 - i),
+                        LocalDateTime.now(),
+                        i * 10));
+            }
         }
     }
 }

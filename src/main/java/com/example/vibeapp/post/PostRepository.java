@@ -1,36 +1,20 @@
 package com.example.vibeapp.post;
 
-import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import java.util.List;
+@Mapper
+public interface PostRepository {
+    List<Post> findAll();
+    Post findById(@Param("id") Long id);
+    void save(Post post);
+    void update(Post post);
+    void deleteById(@Param("id") Long id);
 
-@Repository
-public class PostRepository {
-    private final List<Post> posts = new ArrayList<>();
+    // increment view count atomically
+    void incrementViews(@Param("id") Long id);
 
-    public List<Post> findAll() {
-        return new ArrayList<>(posts);
-    }
-
-    public Post findById(Long id) {
-        return posts.stream()
-                .filter(post -> post.getId().equals(id))
-                .findFirst()
-                .orElse(null);
-    }
-
-    public void save(Post post) {
-        Post existing = findById(post.getId());
-        if (existing != null) {
-            int index = posts.indexOf(existing);
-            posts.set(index, post);
-        } else {
-            posts.add(post);
-        }
-    }
-
-    public void deleteById(Long id) {
-        posts.removeIf(post -> post.getId().equals(id));
-    }
+    // 페이징 및 카운트용 메서드 예시
+    List<Post> findPage(@Param("limit") int limit, @Param("offset") int offset);
+    int count();
 }
